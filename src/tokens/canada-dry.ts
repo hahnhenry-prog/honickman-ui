@@ -1,23 +1,24 @@
 import type { ThemeTokens } from "./types";
 
 // Canada Dry green — shared by CDDV and CDP
+// Primary sourced from header background used across both Canada Dry catalog apps
 export const canadaDryTokens: ThemeTokens = {
-  primary:      "#1a6b3c",
-  primaryDark:  "#0f4526",
-  primaryLight: "#2e8f55",
-  primaryMuted: "rgba(26, 107, 60, 0.08)",
+  primary:      "#0e4636",
+  primaryDark:  "#082d24",
+  primaryLight: "#1a6b3c",
+  primaryMuted: "rgba(14, 70, 54, 0.08)",
 
-  background: "#f0f5f2",
+  background: "#f4f6f9",
   surface:    "#ffffff",
-  border:     "#d4e6da",
+  border:     "#e2e2e2",
 
-  textPrimary:   "#0f4526",
-  textSecondary: "#1e4d30",
-  textMuted:     "#4d7a5e",
+  textPrimary:   "#242424",
+  textSecondary: "#555555",
+  textMuted:     "#999999",
 
-  accent: "#c8a93a",   // Canada Dry gold accent
-  ring:   "rgba(26, 107, 60, 0.25)",
+  accent: "#c8a93a",   // Canada Dry gold
+  ring:   "rgba(14, 70, 54, 0.25)",
 
-  fontDisplay: "'Outfit', system-ui, sans-serif",
-  fontBody:    "'Inter', system-ui, sans-serif",
+  fontDisplay: "'Barlow Condensed', sans-serif",
+  fontBody:    "'Open Sans', sans-serif",
 };

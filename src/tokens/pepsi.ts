@@ -1,23 +1,24 @@
 import type { ThemeTokens } from "./types";
 
 // Pepsi blue — shared by PCNY and PNB
+// Primary sourced from header background used across both Pepsi catalog apps
 export const pepsiTokens: ThemeTokens = {
-  primary:      "#004b93",
-  primaryDark:  "#003472",
-  primaryLight: "#1a6bbf",
-  primaryMuted: "rgba(0, 75, 147, 0.08)",
+  primary:      "#174a92",
+  primaryDark:  "#0e2d6b",
+  primaryLight: "#2a5db0",
+  primaryMuted: "rgba(23, 74, 146, 0.08)",
 
-  background: "#f0f4f9",
+  background: "#f4f6f9",
   surface:    "#ffffff",
-  border:     "#dce5f0",
+  border:     "#e2e2e2",
 
-  textPrimary:   "#003472",
-  textSecondary: "#1e3a5f",
-  textMuted:     "#5c7a9b",
+  textPrimary:   "#242424",
+  textSecondary: "#555555",
+  textMuted:     "#999999",
 
-  accent: "#e4003a",   // Pepsi red accent
-  ring:   "rgba(0, 75, 147, 0.25)",
+  accent: "#e4003a",   // Pepsi red
+  ring:   "rgba(23, 74, 146, 0.25)",
 
-  fontDisplay: "'Outfit', system-ui, sans-serif",
-  fontBody:    "'Inter', system-ui, sans-serif",
+  fontDisplay: "'Barlow Condensed', sans-serif",
+  fontBody:    "'Open Sans', sans-serif",
 };
