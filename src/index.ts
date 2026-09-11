@@ -12,7 +12,7 @@ export type { ThemeProviderProps } from "./context/ThemeContext";
 
 // Hooks
 export { useTable } from "./hooks/useTable";
-export type { UseTableOptions, UseTableReturn, SortState, PaginationState, SortDirection } from "./hooks/useTable";
+export type { UseTableOptions, UseTableReturn, SortState, SortLevel, PaginationState, SortDirection } from "./hooks/useTable";
 
 export { useFilters } from "./hooks/useFilters";
 export type { UseFiltersReturn, Filter, FilterOp, FilterValue } from "./hooks/useFilters";
