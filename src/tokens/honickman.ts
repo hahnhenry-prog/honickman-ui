@@ -2,10 +2,10 @@ import type { ThemeTokens } from "./types";
 
 // Honickman corporate — used for parent-company and internal tools
 export const honickmanTokens: ThemeTokens = {
-  primary:      "#004b93",
-  primaryDark:  "#003370",
-  primaryLight: "#1a63ab",
-  primaryMuted: "rgba(0, 75, 147, 0.08)",
+  primary:      "#174a92",
+  primaryDark:  "#0e2d6b",
+  primaryLight: "#2a5db0",
+  primaryMuted: "rgba(23, 74, 146, 0.08)",
 
   background: "#f4f6f9",
   surface:    "#ffffff",
@@ -15,8 +15,8 @@ export const honickmanTokens: ThemeTokens = {
   textSecondary: "#555555",
   textMuted:     "#999999",
 
-  accent: "#004b93",
-  ring:   "rgba(0, 75, 147, 0.25)",
+  accent: "#174a92",
+  ring:   "rgba(23, 74, 146, 0.25)",
 
   fontDisplay: "'Barlow Condensed', sans-serif",
   fontBody:    "'Open Sans', sans-serif",
