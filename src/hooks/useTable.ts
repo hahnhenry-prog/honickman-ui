@@ -29,6 +29,8 @@ export interface UseTableOptions<T> {
   defaultColFilters?: Record<string, string[]>;
   /** Initial per-column exclude flags (true = hide matching rows). */
   defaultColExcludes?: Record<string, boolean>;
+  /** Initial column widths in pixels. Omitted keys fall back to undefined (auto). */
+  defaultColWidths?: Record<string, number>;
 }
 
 export interface UseTableReturn<T> {
@@ -55,6 +57,12 @@ export interface UseTableReturn<T> {
   setColFilter: (key: string, values: string[], exclude?: boolean) => void;
   clearColFilter: (key: string) => void;
   clearAllColFilters: () => void;
+
+  // ── column widths ──
+  colWidths: Record<string, number>;
+  setColWidth: (key: string, width: number) => void;
+  resetColWidth: (key: string) => void;
+  resetAllColWidths: () => void;
 
   // ── pagination ──
   pagination: PaginationState;
@@ -83,6 +91,7 @@ export function useTable<T extends object>({
   filterFn,
   defaultColFilters = {},
   defaultColExcludes = {},
+  defaultColWidths = {},
 }: UseTableOptions<T>): UseTableReturn<T> {
   const [sort, setSortState] = useState<SortState<T>>(defaultSort);
   const [sortLevels, setSortLevelsState] = useState<SortLevel<keyof T>[]>(defaultSortLevels ?? []);
@@ -93,6 +102,7 @@ export function useTable<T extends object>({
   const [query, setQueryState] = useState("");
   const [colFilters, setColFiltersState] = useState<Record<string, string[]>>(defaultColFilters);
   const [colExcludes, setColExcludesState] = useState<Record<string, boolean>>(defaultColExcludes);
+  const [colWidths, setColWidthsState] = useState<Record<string, number>>(defaultColWidths);
 
   // 1. text filter
   const textFiltered = useMemo(() => {
@@ -181,6 +191,18 @@ export function useTable<T extends object>({
     setPagination((p) => ({ ...p, page: 0 }));
   }
 
+  function setColWidth(key: string, width: number) {
+    setColWidthsState((prev) => ({ ...prev, [key]: width }));
+  }
+
+  function resetColWidth(key: string) {
+    setColWidthsState((prev) => { const next = { ...prev }; delete next[key]; return next; });
+  }
+
+  function resetAllColWidths() {
+    setColWidthsState({});
+  }
+
   return {
     rows,
     totalRows,
@@ -196,6 +218,10 @@ export function useTable<T extends object>({
     setColFilter,
     clearColFilter,
     clearAllColFilters,
+    colWidths,
+    setColWidth,
+    resetColWidth,
+    resetAllColWidths,
     pagination: { ...pagination, page: safePage },
     setPage,
     setPageSize,
