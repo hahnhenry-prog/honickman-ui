@@ -1,24 +1,29 @@
 import type { ThemeTokens } from "./types";
 
 // Canada Dry green — shared by CDDV and CDP
-// Primary sourced from header background used across both Canada Dry catalog apps
+// `primary` matches the header green used by both Canada Dry catalog apps and
+// the green in the logo artwork. `accent` is sampled from the CDP logo gold.
 export const canadaDryTokens: ThemeTokens = {
-  primary:      "#0e4636",
-  primaryDark:  "#082d24",
-  primaryLight: "#1a6b3c",
-  primaryMuted: "rgba(14, 70, 54, 0.08)",
+  primary:           "#0e4636",
+  primaryDark:       "#082d24",
+  primaryLight:      "#1a6b3c",
+  primaryMuted:      "rgba(14, 70, 54, 0.08)",
+  primaryForeground: "#ffffff",
+  secondary:         "#082d24",
+  secondaryForeground: "#ffffff",
+  accent:            "#d0aa29",   // Canada Dry gold
 
-  background: "#f4f6f9",
-  surface:    "#ffffff",
-  border:     "#e2e2e2",
+  background:      "#f4f6f9",
+  foreground:      "#242424",
+  card:            "#ffffff",
+  cardForeground:  "#242424",
+  muted:           "#eef2f7",
+  mutedForeground: "#666666",
+  border:          "#e2e2e2",
+  ring:            "rgba(14, 70, 54, 0.25)",
 
-  textPrimary:   "#242424",
-  textSecondary: "#555555",
-  textMuted:     "#999999",
-
-  accent: "#d0aa29",   // Canada Dry gold — sampled from CDP logo artwork
-  ring:   "rgba(14, 70, 54, 0.25)",
-
-  fontDisplay: "'Barlow Condensed', sans-serif",
-  fontBody:    "'Open Sans', sans-serif",
+  radius:      "2px",
+  fontSans:    "'Open Sans', ui-sans-serif, system-ui, sans-serif",
+  fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
+  fontMono:    "'JetBrains Mono', ui-monospace, monospace",
 };

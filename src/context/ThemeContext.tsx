@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, type ReactNode } from "react";
+import React, { createContext, useContext, useLayoutEffect, type ReactNode } from "react";
 import type { BrandId } from "../brands";
 import { tokensForBrand } from "../brands";
 import type { ThemeTokens } from "../tokens";
@@ -10,17 +10,45 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
+/** token key -> CSS custom property. The single source of truth for the
+ *  variable names apps are allowed to rely on. */
+const CSS_VARS: Record<keyof ThemeTokens, string> = {
+  primary:             "--color-primary",
+  primaryDark:         "--color-primary-dark",
+  primaryLight:        "--color-primary-light",
+  primaryMuted:        "--color-primary-muted",
+  primaryForeground:   "--color-primary-foreground",
+  secondary:           "--color-secondary",
+  secondaryForeground: "--color-secondary-foreground",
+  accent:              "--color-accent",
+  background:          "--color-background",
+  foreground:          "--color-foreground",
+  card:                "--color-card",
+  cardForeground:      "--color-card-foreground",
+  muted:               "--color-muted",
+  mutedForeground:     "--color-muted-foreground",
+  border:              "--color-border",
+  ring:                "--color-ring",
+  radius:              "--radius",
+  fontSans:            "--font-sans",
+  fontDisplay:         "--font-display",
+  fontMono:            "--font-mono",
+};
+
 export interface ThemeProviderProps {
   brand: BrandId;
   children: ReactNode;
-  /** Optional CSS selector to scope custom properties (defaults to ":root") */
+  /** CSS selector to scope the variables to. Defaults to :root, which is
+   *  required if any UI renders through a portal into document.body. */
   scope?: string;
 }
 
 export function ThemeProvider({ brand, children, scope = ":root" }: ThemeProviderProps) {
   const tokens = tokensForBrand(brand);
 
-  useEffect(() => {
+  // Layout effect so the theme is applied before first paint — otherwise the
+  // app flashes its stylesheet defaults for a frame.
+  useLayoutEffect(() => {
     const target =
       scope === ":root"
         ? document.documentElement
@@ -28,20 +56,15 @@ export function ThemeProvider({ brand, children, scope = ":root" }: ThemeProvide
 
     if (!target) return;
 
-    target.style.setProperty("--color-primary",       tokens.primary);
-    target.style.setProperty("--color-primary-dark",  tokens.primaryDark);
-    target.style.setProperty("--color-primary-light", tokens.primaryLight);
-    target.style.setProperty("--color-primary-muted", tokens.primaryMuted);
-    target.style.setProperty("--color-background",    tokens.background);
-    target.style.setProperty("--color-surface",       tokens.surface);
-    target.style.setProperty("--color-border",        tokens.border);
-    target.style.setProperty("--color-text-primary",   tokens.textPrimary);
-    target.style.setProperty("--color-text-secondary", tokens.textSecondary);
-    target.style.setProperty("--color-text-muted",     tokens.textMuted);
-    target.style.setProperty("--color-accent",        tokens.accent);
-    target.style.setProperty("--color-ring",          tokens.ring);
-    target.style.setProperty("--font-display",        tokens.fontDisplay);
-    target.style.setProperty("--font-body",           tokens.fontBody);
+    for (const [key, cssVar] of Object.entries(CSS_VARS)) {
+      target.style.setProperty(cssVar, tokens[key as keyof ThemeTokens]);
+    }
+
+    return () => {
+      for (const cssVar of Object.values(CSS_VARS)) {
+        target.style.removeProperty(cssVar);
+      }
+    };
   }, [tokens, scope]);
 
   return (
