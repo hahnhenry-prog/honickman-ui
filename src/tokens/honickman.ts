@@ -13,7 +13,7 @@ export const honickmanTokens: ThemeTokens = {
   secondaryForeground: "#ffffff",
   accent:            "#de8500",
 
-  background:      "#f4f6f8",
+  background:      "#f4f6f9",
   foreground:      "#1a2533",
   card:            "#ffffff",
   cardForeground:  "#1a2533",
@@ -25,7 +25,7 @@ export const honickmanTokens: ThemeTokens = {
   surfaceInverseForeground: "#ffffff",
 
   radius:      "2px",
-  fontSans:    "'Nunito', ui-sans-serif, system-ui, sans-serif",
+  fontSans:    "'Inter', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
   fontMono:    "'JetBrains Mono', ui-monospace, monospace",
 };

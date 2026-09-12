@@ -30,7 +30,7 @@ export const pepsiTokens: ThemeTokens = {
   surfaceInverseForeground: "#ffffff",
 
   radius:      "2px",
-  fontSans:    "'Open Sans', ui-sans-serif, system-ui, sans-serif",
+  fontSans:    "'Inter', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
   fontMono:    "'JetBrains Mono', ui-monospace, monospace",
 };
