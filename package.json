@@ -21,7 +21,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite build --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepare": "pnpm build"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
