@@ -1,25 +1,36 @@
+/**
+ * The complete set of themeable values.
+ *
+ * Names follow the convention the apps already use (`foreground`, `card`,
+ * `mutedForeground`) rather than an invented vocabulary, so a themed app needs
+ * no rewrite. Each key maps to one CSS custom property — see ThemeProvider.
+ */
 export interface ThemeTokens {
-  // Core palette
-  primary: string;
-  primaryDark: string;
-  primaryLight: string;
-  primaryMuted: string;   // translucent tint for backgrounds/rings
+  // ── Brand ──
+  primary: string
+  primaryDark: string           // hover / pressed
+  primaryLight: string          // subtle accents
+  primaryMuted: string          // translucent tint for backgrounds
+  primaryForeground: string     // text sitting on primary
+  secondary: string             // supporting brand colour
+  secondaryForeground: string
+  accent: string                // vivid highlight
 
-  // Surfaces
-  background: string;     // page background
-  surface: string;        // card / section surface
-  border: string;
+  // ── Surfaces ──
+  background: string            // page
+  foreground: string            // body text
+  card: string                  // panel / card surface
+  cardForeground: string
+  muted: string                 // subdued fill
+  mutedForeground: string       // secondary / placeholder text
+  border: string
+  ring: string                  // focus ring
+  surfaceInverse: string        // dark band on a light page (footers, banners)
+  surfaceInverseForeground: string
 
-  // Text
-  textPrimary: string;
-  textSecondary: string;
-  textMuted: string;
-
-  // Semantic
-  accent: string;         // highlights, active states
-  ring: string;           // focus ring color (semi-transparent)
-
-  // Typography
-  fontDisplay: string;    // headings
-  fontBody: string;       // body / UI text
+  // ── Shape & type ──
+  radius: string
+  fontSans: string
+  fontDisplay: string
+  fontMono: string
 }

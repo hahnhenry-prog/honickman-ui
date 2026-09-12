@@ -9,9 +9,10 @@ export interface Brand {
   name: string;
   shortName: string;
   theme: ThemeId;
-  // Logos are intentionally excluded from this package.
-  // Each app imports its own logo asset and passes it via
-  // ThemeProvider's `logo` prop or uses it directly in the app shell.
+  // Logo files ship alongside this package, one per brand id:
+  //   import pcny from "@honickman/ui/logos/pcny.png"
+  // They are imported directly rather than looked up at runtime, because
+  // bundlers need a static path. See logos/ for the available files.
 }
 
 export const BRANDS: Record<BrandId, Brand> = {
