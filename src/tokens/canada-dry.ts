@@ -16,7 +16,7 @@ export const canadaDryTokens: ThemeTokens = {
   textSecondary: "#555555",
   textMuted:     "#999999",
 
-  accent: "#c8a93a",   // Canada Dry gold
+  accent: "#d0aa29",   // Canada Dry gold — sampled from CDP logo artwork
   ring:   "rgba(14, 70, 54, 0.25)",
 
   fontDisplay: "'Barlow Condensed', sans-serif",
