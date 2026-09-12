@@ -1,5 +1,5 @@
 import { jsx as X } from "react/jsx-runtime";
-import { createContext as Z, useLayoutEffect as $, useContext as ee, useState as g, useMemo as S, useCallback as M } from "react";
+import { createContext as Z, useLayoutEffect as $, useContext as ee, useState as g, useMemo as C, useCallback as M } from "react";
 const re = {
   primary: "#de8500",
   primaryDark: "#b86e00",
@@ -9,19 +9,19 @@ const re = {
   secondary: "#283a4d",
   secondaryForeground: "#ffffff",
   accent: "#de8500",
-  background: "#f4f6f9",
+  background: "#f0eeeb",
   foreground: "#1a2533",
   card: "#ffffff",
   cardForeground: "#1a2533",
-  muted: "#eaecf0",
+  muted: "#f8f7f5",
   mutedForeground: "#6b7a90",
-  border: "#d4d9e2",
+  border: "#e2e0dc",
   ring: "rgba(222, 133, 0, 0.25)",
   surfaceInverse: "#2e2e2e",
   surfaceInverseForeground: "#ffffff",
   radius: "2px",
   fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
-  fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
+  fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace"
 }, ne = {
   primary: "#174a92",
@@ -33,19 +33,19 @@ const re = {
   secondaryForeground: "#ffffff",
   accent: "#e4003a",
   // Pepsi red
-  background: "#f4f6f9",
+  background: "#f0eeeb",
   foreground: "#242424",
   card: "#ffffff",
   cardForeground: "#242424",
-  muted: "#eef2f7",
+  muted: "#f8f7f5",
   mutedForeground: "#666666",
-  border: "#e2e2e2",
+  border: "#e2e0dc",
   ring: "rgba(23, 74, 146, 0.25)",
   surfaceInverse: "#2e2e2e",
   surfaceInverseForeground: "#ffffff",
   radius: "2px",
   fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
-  fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
+  fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace"
 }, oe = {
   primary: "#144937",
@@ -57,19 +57,19 @@ const re = {
   secondaryForeground: "#ffffff",
   accent: "#d0a82a",
   // Canada Dry gold
-  background: "#f4f6f9",
+  background: "#f0eeeb",
   foreground: "#242424",
   card: "#ffffff",
   cardForeground: "#242424",
-  muted: "#eef2f7",
+  muted: "#f8f7f5",
   mutedForeground: "#666666",
-  border: "#e2e2e2",
+  border: "#e2e0dc",
   ring: "rgba(20, 73, 55, 0.25)",
   surfaceInverse: "#2e2e2e",
   surfaceInverseForeground: "#ffffff",
   radius: "2px",
   fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
-  fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
+  fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace"
 }, te = {
   honickman: {
@@ -175,89 +175,89 @@ function me({
   const [a, b] = g(c), [y, k] = g(o ?? []), [p, m] = g({
     page: 0,
     pageSize: r
-  }), [v, V] = g(""), [h, x] = g(l), [w, D] = g(i), [W, P] = g(u), B = S(() => !f || !v.trim() ? s : s.filter((e) => f(e, v.trim())), [s, v, f]), C = S(() => {
+  }), [v, O] = g(""), [h, x] = g(l), [D, P] = g(i), [V, w] = g(u), I = C(() => !f || !v.trim() ? s : s.filter((e) => f(e, v.trim())), [s, v, f]), F = C(() => {
     const e = Object.keys(h).filter((n) => {
       var t;
       return (((t = h[n]) == null ? void 0 : t.length) ?? 0) > 0;
     });
-    return e.length === 0 ? B : B.filter(
+    return e.length === 0 ? I : I.filter(
       (n) => e.every((t) => {
-        const d = String(n[t] ?? ""), A = h[t].includes(d);
-        return w[t] ? !A : A;
+        const d = String(n[t] ?? ""), B = h[t].includes(d);
+        return D[t] ? !B : B;
       })
     );
-  }, [B, h, w]), I = S(() => y.length > 0 ? ce(C, y) : a.key ? [...C].sort((e, n) => {
-    const t = e[a.key], d = n[a.key], T = t === d ? 0 : t == null ? 1 : d == null || t < d ? -1 : 1;
-    return a.direction === "asc" ? T : -T;
-  }) : C, [C, a, y]), N = I.length, L = Math.max(1, Math.ceil(N / p.pageSize)), F = Math.min(p.page, L - 1), j = S(
-    () => I.slice(F * p.pageSize, F * p.pageSize + p.pageSize),
-    [I, F, p.pageSize]
+  }, [I, h, D]), L = C(() => y.length > 0 ? ce(F, y) : a.key ? [...F].sort((e, n) => {
+    const t = e[a.key], d = n[a.key], N = t === d ? 0 : t == null ? 1 : d == null || t < d ? -1 : 1;
+    return a.direction === "asc" ? N : -N;
+  }) : F, [F, a, y]), A = L.length, T = Math.max(1, Math.ceil(A / p.pageSize)), S = Math.min(p.page, T - 1), W = C(
+    () => L.slice(S * p.pageSize, S * p.pageSize + p.pageSize),
+    [L, S, p.pageSize]
   );
-  function q(e) {
+  function j(e) {
     b((n) => ({
       key: e,
       direction: n.key === e && n.direction === "asc" ? "desc" : "asc"
     })), k([]), m((n) => ({ ...n, page: 0 }));
   }
-  function O(e) {
+  function q(e) {
     k(e), b({ key: null, direction: "asc" }), m((n) => ({ ...n, page: 0 }));
   }
   function _(e) {
-    m((n) => ({ ...n, page: Math.max(0, Math.min(e, L - 1)) }));
+    m((n) => ({ ...n, page: Math.max(0, Math.min(e, T - 1)) }));
   }
   function H(e) {
     m({ page: 0, pageSize: e });
   }
   function J(e) {
-    V(e), m((n) => ({ ...n, page: 0 }));
+    O(e), m((n) => ({ ...n, page: 0 }));
   }
   function R(e, n, t = !1) {
-    x((d) => ({ ...d, [e]: n })), D((d) => ({ ...d, [e]: t })), m((d) => ({ ...d, page: 0 }));
+    x((d) => ({ ...d, [e]: n })), P((d) => ({ ...d, [e]: t })), m((d) => ({ ...d, page: 0 }));
   }
   function K(e) {
     x((n) => {
       const t = { ...n };
       return delete t[e], t;
-    }), D((n) => {
+    }), P((n) => {
       const t = { ...n };
       return delete t[e], t;
     }), m((n) => ({ ...n, page: 0 }));
   }
   function Q() {
-    x({}), D({}), m((e) => ({ ...e, page: 0 }));
+    x({}), P({}), m((e) => ({ ...e, page: 0 }));
   }
   function Y(e, n) {
-    P((t) => ({ ...t, [e]: n }));
+    w((t) => ({ ...t, [e]: n }));
   }
   function G(e) {
-    P((n) => {
+    w((n) => {
       const t = { ...n };
       return delete t[e], t;
     });
   }
   function U() {
-    P({});
+    w({});
   }
   return {
-    rows: j,
-    totalRows: N,
-    totalPages: L,
+    rows: W,
+    totalRows: A,
+    totalPages: T,
     sort: a,
-    setSort: q,
+    setSort: j,
     sortLevels: y,
-    setSortLevels: O,
+    setSortLevels: q,
     query: v,
     setQuery: J,
     colFilters: h,
-    colExcludes: w,
+    colExcludes: D,
     setColFilter: R,
     clearColFilter: K,
     clearAllColFilters: Q,
-    colWidths: W,
+    colWidths: V,
     setColWidth: Y,
     resetColWidth: G,
     resetAllColWidths: U,
-    pagination: { ...p, page: F },
+    pagination: { ...p, page: S },
     setPage: _,
     setPageSize: H
   };
