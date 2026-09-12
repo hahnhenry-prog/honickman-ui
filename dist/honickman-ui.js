@@ -1,6 +1,6 @@
-import { jsx as X } from "react/jsx-runtime";
-import { createContext as Z, useLayoutEffect as $, useContext as ee, useState as g, useMemo as C, useCallback as M } from "react";
-const re = {
+import { jsx as b, jsxs as E } from "react/jsx-runtime";
+import { createContext as Z, useLayoutEffect as ee, useContext as re, useState as p, useMemo as M, useCallback as x } from "react";
+const ne = {
   primary: "#de8500",
   primaryDark: "#b86e00",
   primaryLight: "#f0a030",
@@ -23,7 +23,7 @@ const re = {
   fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace"
-}, ne = {
+}, te = {
   primary: "#174a92",
   primaryDark: "#0e3585",
   primaryLight: "#1f65c7",
@@ -71,7 +71,7 @@ const re = {
   fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace"
-}, te = {
+}, se = {
   honickman: {
     id: "honickman",
     name: "The Honickman Companies",
@@ -102,15 +102,15 @@ const re = {
     shortName: "CDP",
     theme: "canada-dry"
   }
-}, se = {
-  honickman: re,
-  pepsi: ne,
+}, ae = {
+  honickman: ne,
+  pepsi: te,
   "canada-dry": oe
 };
-function ae(s) {
-  return se[te[s].theme];
+function ie(o) {
+  return ae[se[o].theme];
 }
-const z = Z(null), E = {
+const O = Z(null), z = {
   primary: "--color-primary",
   primaryDark: "--color-primary-dark",
   primaryLight: "--color-primary-light",
@@ -134,184 +134,214 @@ const z = Z(null), E = {
   fontDisplay: "--font-display",
   fontMono: "--font-mono"
 };
-function de({ brand: s, children: c, scope: o = ":root" }) {
-  const r = ae(s);
-  return $(() => {
-    const f = o === ":root" ? document.documentElement : document.querySelector(o);
-    if (f) {
-      for (const [l, i] of Object.entries(E))
-        f.style.setProperty(i, r[l]);
+function de({ brand: o, children: a, scope: e = ":root" }) {
+  const r = ie(o);
+  return ee(() => {
+    const u = e === ":root" ? document.documentElement : document.querySelector(e);
+    if (u) {
+      for (const [f, i] of Object.entries(z))
+        u.style.setProperty(i, r[f]);
       return () => {
-        for (const l of Object.values(E))
-          f.style.removeProperty(l);
+        for (const f of Object.values(z))
+          u.style.removeProperty(f);
       };
     }
-  }, [r, o]), /* @__PURE__ */ X(z.Provider, { value: { brandId: s, tokens: r }, children: c });
+  }, [r, e]), /* @__PURE__ */ b(O.Provider, { value: { brandId: o, tokens: r }, children: a });
 }
-function le() {
-  const s = ee(z);
-  if (!s) throw new Error("useTheme must be used inside <ThemeProvider>");
-  return s;
+function me() {
+  const o = re(O);
+  if (!o) throw new Error("useTheme must be used inside <ThemeProvider>");
+  return o;
 }
-function ce(s, c) {
-  return c.length === 0 ? s : [...s].sort((o, r) => {
-    for (const { key: f, dir: l } of c) {
-      const i = o[f], u = r[f], a = i === u ? 0 : i == null ? 1 : u == null || i < u ? -1 : 1;
-      if (a !== 0) return l === "asc" ? a : -a;
+function ce(o, a) {
+  return a.length === 0 ? o : [...o].sort((e, r) => {
+    for (const { key: u, dir: f } of a) {
+      const i = e[u], l = r[u], c = i === l ? 0 : i == null ? 1 : l == null || i < l ? -1 : 1;
+      if (c !== 0) return f === "asc" ? c : -c;
     }
     return 0;
   });
 }
-function me({
-  data: s,
-  defaultSort: c = { key: null, direction: "asc" },
-  defaultSortLevels: o,
+function pe({
+  data: o,
+  defaultSort: a = { key: null, direction: "asc" },
+  defaultSortLevels: e,
   defaultPageSize: r = 25,
-  filterFn: f,
-  defaultColFilters: l = {},
+  filterFn: u,
+  defaultColFilters: f = {},
   defaultColExcludes: i = {},
-  defaultColWidths: u = {}
+  defaultColWidths: l = {}
 }) {
-  const [a, b] = g(c), [y, k] = g(o ?? []), [p, m] = g({
+  const [c, v] = p(a), [y, F] = p(e ?? []), [g, m] = p({
     page: 0,
     pageSize: r
-  }), [v, O] = g(""), [h, x] = g(l), [D, P] = g(i), [V, w] = g(u), I = C(() => !f || !v.trim() ? s : s.filter((e) => f(e, v.trim())), [s, v, f]), F = C(() => {
-    const e = Object.keys(h).filter((n) => {
-      var t;
-      return (((t = h[n]) == null ? void 0 : t.length) ?? 0) > 0;
+  }), [k, V] = p(""), [h, D] = p(f), [P, N] = p(i), [W, w] = p(l), I = M(() => !u || !k.trim() ? o : o.filter((n) => u(n, k.trim())), [o, k, u]), S = M(() => {
+    const n = Object.keys(h).filter((t) => {
+      var s;
+      return (((s = h[t]) == null ? void 0 : s.length) ?? 0) > 0;
     });
-    return e.length === 0 ? I : I.filter(
-      (n) => e.every((t) => {
-        const d = String(n[t] ?? ""), B = h[t].includes(d);
-        return D[t] ? !B : B;
+    return n.length === 0 ? I : I.filter(
+      (t) => n.every((s) => {
+        const d = String(t[s] ?? ""), B = h[s].includes(d);
+        return P[s] ? !B : B;
       })
     );
-  }, [I, h, D]), L = C(() => y.length > 0 ? ce(F, y) : a.key ? [...F].sort((e, n) => {
-    const t = e[a.key], d = n[a.key], N = t === d ? 0 : t == null ? 1 : d == null || t < d ? -1 : 1;
-    return a.direction === "asc" ? N : -N;
-  }) : F, [F, a, y]), A = L.length, T = Math.max(1, Math.ceil(A / p.pageSize)), S = Math.min(p.page, T - 1), W = C(
-    () => L.slice(S * p.pageSize, S * p.pageSize + p.pageSize),
-    [L, S, p.pageSize]
+  }, [I, h, P]), L = M(() => y.length > 0 ? ce(S, y) : c.key ? [...S].sort((n, t) => {
+    const s = n[c.key], d = t[c.key], _ = s === d ? 0 : s == null ? 1 : d == null || s < d ? -1 : 1;
+    return c.direction === "asc" ? _ : -_;
+  }) : S, [S, c, y]), A = L.length, T = Math.max(1, Math.ceil(A / g.pageSize)), C = Math.min(g.page, T - 1), j = M(
+    () => L.slice(C * g.pageSize, C * g.pageSize + g.pageSize),
+    [L, C, g.pageSize]
   );
-  function j(e) {
-    b((n) => ({
-      key: e,
-      direction: n.key === e && n.direction === "asc" ? "desc" : "asc"
-    })), k([]), m((n) => ({ ...n, page: 0 }));
+  function q(n) {
+    v((t) => ({
+      key: n,
+      direction: t.key === n && t.direction === "asc" ? "desc" : "asc"
+    })), F([]), m((t) => ({ ...t, page: 0 }));
   }
-  function q(e) {
-    k(e), b({ key: null, direction: "asc" }), m((n) => ({ ...n, page: 0 }));
+  function H(n) {
+    F(n), v({ key: null, direction: "asc" }), m((t) => ({ ...t, page: 0 }));
   }
-  function _(e) {
-    m((n) => ({ ...n, page: Math.max(0, Math.min(e, T - 1)) }));
+  function J(n) {
+    m((t) => ({ ...t, page: Math.max(0, Math.min(n, T - 1)) }));
   }
-  function H(e) {
-    m({ page: 0, pageSize: e });
+  function R(n) {
+    m({ page: 0, pageSize: n });
   }
-  function J(e) {
-    O(e), m((n) => ({ ...n, page: 0 }));
+  function K(n) {
+    V(n), m((t) => ({ ...t, page: 0 }));
   }
-  function R(e, n, t = !1) {
-    x((d) => ({ ...d, [e]: n })), P((d) => ({ ...d, [e]: t })), m((d) => ({ ...d, page: 0 }));
+  function Q(n, t, s = !1) {
+    D((d) => ({ ...d, [n]: t })), N((d) => ({ ...d, [n]: s })), m((d) => ({ ...d, page: 0 }));
   }
-  function K(e) {
-    x((n) => {
-      const t = { ...n };
-      return delete t[e], t;
-    }), P((n) => {
-      const t = { ...n };
-      return delete t[e], t;
-    }), m((n) => ({ ...n, page: 0 }));
+  function Y(n) {
+    D((t) => {
+      const s = { ...t };
+      return delete s[n], s;
+    }), N((t) => {
+      const s = { ...t };
+      return delete s[n], s;
+    }), m((t) => ({ ...t, page: 0 }));
   }
-  function Q() {
-    x({}), P({}), m((e) => ({ ...e, page: 0 }));
+  function $() {
+    D({}), N({}), m((n) => ({ ...n, page: 0 }));
   }
-  function Y(e, n) {
-    w((t) => ({ ...t, [e]: n }));
+  function G(n, t) {
+    w((s) => ({ ...s, [n]: t }));
   }
-  function G(e) {
-    w((n) => {
-      const t = { ...n };
-      return delete t[e], t;
+  function U(n) {
+    w((t) => {
+      const s = { ...t };
+      return delete s[n], s;
     });
   }
-  function U() {
+  function X() {
     w({});
   }
   return {
-    rows: W,
+    rows: j,
     totalRows: A,
     totalPages: T,
-    sort: a,
-    setSort: j,
+    sort: c,
+    setSort: q,
     sortLevels: y,
-    setSortLevels: q,
-    query: v,
-    setQuery: J,
+    setSortLevels: H,
+    query: k,
+    setQuery: K,
     colFilters: h,
-    colExcludes: D,
-    setColFilter: R,
-    clearColFilter: K,
-    clearAllColFilters: Q,
-    colWidths: V,
-    setColWidth: Y,
-    resetColWidth: G,
-    resetAllColWidths: U,
-    pagination: { ...p, page: S },
-    setPage: _,
-    setPageSize: H
+    colExcludes: P,
+    setColFilter: Q,
+    clearColFilter: Y,
+    clearAllColFilters: $,
+    colWidths: W,
+    setColWidth: G,
+    resetColWidth: U,
+    resetAllColWidths: X,
+    pagination: { ...g, page: C },
+    setPage: J,
+    setPageSize: R
   };
 }
-function ie(s, c) {
-  const o = s[c.key], r = c.value;
-  switch (c.op) {
+function ue(o, a) {
+  const e = o[a.key], r = a.value;
+  switch (a.op) {
     case "eq":
-      return o === r;
+      return e === r;
     case "neq":
-      return o !== r;
+      return e !== r;
     case "contains":
-      return typeof o == "string" && typeof r == "string" ? o.toLowerCase().includes(r.toLowerCase()) : !1;
+      return typeof e == "string" && typeof r == "string" ? e.toLowerCase().includes(r.toLowerCase()) : !1;
     case "starts_with":
-      return typeof o == "string" && typeof r == "string" ? o.toLowerCase().startsWith(r.toLowerCase()) : !1;
+      return typeof e == "string" && typeof r == "string" ? e.toLowerCase().startsWith(r.toLowerCase()) : !1;
     case "gt":
-      return o != null && r != null && o > r;
+      return e != null && r != null && e > r;
     case "gte":
-      return o != null && r != null && o >= r;
+      return e != null && r != null && e >= r;
     case "lt":
-      return o != null && r != null && o < r;
+      return e != null && r != null && e < r;
     case "lte":
-      return o != null && r != null && o <= r;
+      return e != null && r != null && e <= r;
     case "in":
-      return Array.isArray(r) && r.includes(o);
+      return Array.isArray(r) && r.includes(e);
     case "not_in":
-      return Array.isArray(r) && !r.includes(o);
+      return Array.isArray(r) && !r.includes(e);
     default:
       return !0;
   }
 }
 function ge() {
-  const [s, c] = g([]), o = M(
-    (i, u, a) => {
-      c((b) => [...b.filter((k) => k.key !== i), { key: i, op: u, value: a }]);
+  const [o, a] = p([]), e = x(
+    (i, l, c) => {
+      a((v) => [...v.filter((F) => F.key !== i), { key: i, op: l, value: c }]);
     },
     []
-  ), r = M((i) => {
-    c((u) => u.filter((a) => a.key !== i));
-  }, []), f = M(() => c([]), []), l = M(
-    (i) => i.filter((u) => s.every((a) => ie(u, a))),
-    [s]
+  ), r = x((i) => {
+    a((l) => l.filter((c) => c.key !== i));
+  }, []), u = x(() => a([]), []), f = x(
+    (i) => i.filter((l) => o.every((c) => ue(l, c))),
+    [o]
   );
-  return { filters: s, setFilter: o, clearFilter: r, clearAll: f, apply: l };
+  return { filters: o, setFilter: e, clearFilter: r, clearAll: u, apply: f };
+}
+function ye({
+  label: o,
+  required: a,
+  hint: e,
+  error: r,
+  htmlFor: u,
+  className: f,
+  children: i
+}) {
+  return /* @__PURE__ */ E("div", { className: f ? `hui-field ${f}` : "hui-field", children: [
+    /* @__PURE__ */ E("label", { className: "hui-field__label", htmlFor: u, children: [
+      o,
+      a && /* @__PURE__ */ b("span", { className: "hui-field__required", "aria-hidden": "true", children: "*" })
+    ] }),
+    i,
+    r ? /* @__PURE__ */ b("p", { className: "hui-field__error", role: "alert", children: r }) : e ? /* @__PURE__ */ b("p", { className: "hui-field__hint", children: e }) : null
+  ] });
+}
+function he({ invalid: o, className: a, ...e }) {
+  return /* @__PURE__ */ b(
+    "input",
+    {
+      ...e,
+      "aria-invalid": o || void 0,
+      className: a ? `hui-input ${a}` : "hui-input"
+    }
+  );
 }
 export {
-  te as BRANDS,
-  se as THEME_TOKENS,
+  se as BRANDS,
+  ye as Field,
+  he as Input,
+  ae as THEME_TOKENS,
   de as ThemeProvider,
   oe as canadaDryTokens,
-  re as honickmanTokens,
-  ne as pepsiTokens,
-  ae as tokensForBrand,
+  ne as honickmanTokens,
+  te as pepsiTokens,
+  ie as tokensForBrand,
   ge as useFilters,
-  me as useTable,
-  le as useTheme
+  pe as useTable,
+  me as useTheme
 };

@@ -8,3 +8,7 @@ export { useTable } from './hooks/useTable';
 export type { UseTableOptions, UseTableReturn, SortState, SortLevel, PaginationState, SortDirection } from './hooks/useTable';
 export { useFilters } from './hooks/useFilters';
 export type { UseFiltersReturn, Filter, FilterOp, FilterValue } from './hooks/useFilters';
+export { Field } from './components/Field';
+export type { FieldProps } from './components/Field';
+export { Input } from './components/Input';
+export type { InputProps } from './components/Input';

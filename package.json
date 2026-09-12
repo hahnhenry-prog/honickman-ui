@@ -13,12 +13,14 @@
       "types": "./dist/index.d.ts"
     },
     "./logos/*": "./logos/*",
-    "./scale.css": "./scale.css"
+    "./scale.css": "./scale.css",
+    "./styles.css": "./styles.css"
   },
   "files": [
     "dist",
     "logos",
-    "scale.css"
+    "scale.css",
+    "styles.css"
   ],
   "scripts": {
     "build": "tsc && vite build",

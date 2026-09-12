@@ -16,3 +16,10 @@ export type { UseTableOptions, UseTableReturn, SortState, SortLevel, PaginationS
 
 export { useFilters } from "./hooks/useFilters";
 export type { UseFiltersReturn, Filter, FilterOp, FilterValue } from "./hooks/useFilters";
+
+// Components
+export { Field } from "./components/Field";
+export type { FieldProps } from "./components/Field";
+
+export { Input } from "./components/Input";
+export type { InputProps } from "./components/Input";
