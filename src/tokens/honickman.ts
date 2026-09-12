@@ -9,7 +9,7 @@ export const honickmanTokens: ThemeTokens = {
   primaryLight:      "#f0a030",
   primaryMuted:      "rgba(222, 133, 0, 0.08)",
   primaryForeground: "#ffffff",
-  secondary:         "#283a4e",
+  secondary:         "#283a4d",
   secondaryForeground: "#ffffff",
   accent:            "#de8500",
 
