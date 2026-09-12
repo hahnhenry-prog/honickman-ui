@@ -12,11 +12,13 @@
       "require": "./dist/honickman-ui.umd.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./logos/*": "./logos/*"
+    "./logos/*": "./logos/*",
+    "./scale.css": "./scale.css"
   },
   "files": [
     "dist",
-    "logos"
+    "logos",
+    "scale.css"
   ],
   "scripts": {
     "build": "tsc && vite build",
