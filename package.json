@@ -11,9 +11,13 @@
       "import": "./dist/honickman-ui.js",
       "require": "./dist/honickman-ui.umd.cjs",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./logos/*": "./logos/*"
   },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "logos"
+  ],
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite build --watch",
