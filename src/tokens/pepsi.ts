@@ -26,6 +26,8 @@ export const pepsiTokens: ThemeTokens = {
   mutedForeground: "#666666",
   border:          "#e2e2e2",
   ring:            "rgba(23, 74, 146, 0.25)",
+  surfaceInverse:           "#2e2e2e",
+  surfaceInverseForeground: "#ffffff",
 
   radius:      "2px",
   fontSans:    "'Open Sans', ui-sans-serif, system-ui, sans-serif",

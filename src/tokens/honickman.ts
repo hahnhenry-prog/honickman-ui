@@ -21,6 +21,8 @@ export const honickmanTokens: ThemeTokens = {
   mutedForeground: "#6b7a90",
   border:          "#d4d9e2",
   ring:            "rgba(222, 133, 0, 0.25)",
+  surfaceInverse:           "#2e2e2e",
+  surfaceInverseForeground: "#ffffff",
 
   radius:      "2px",
   fontSans:    "'Nunito', ui-sans-serif, system-ui, sans-serif",

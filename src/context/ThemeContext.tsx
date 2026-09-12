@@ -29,6 +29,8 @@ const CSS_VARS: Record<keyof ThemeTokens, string> = {
   mutedForeground:     "--color-muted-foreground",
   border:              "--color-border",
   ring:                "--color-ring",
+  surfaceInverse:           "--color-surface-inverse",
+  surfaceInverseForeground: "--color-surface-inverse-foreground",
   radius:              "--radius",
   fontSans:            "--font-sans",
   fontDisplay:         "--font-display",

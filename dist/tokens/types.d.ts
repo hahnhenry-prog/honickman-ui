@@ -22,6 +22,8 @@ export interface ThemeTokens {
     mutedForeground: string;
     border: string;
     ring: string;
+    surfaceInverse: string;
+    surfaceInverseForeground: string;
     radius: string;
     fontSans: string;
     fontDisplay: string;

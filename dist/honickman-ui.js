@@ -1,5 +1,5 @@
 import { jsx as X } from "react/jsx-runtime";
-import { createContext as Z, useLayoutEffect as $, useContext as ee, useState as p, useMemo as v, useCallback as M } from "react";
+import { createContext as Z, useLayoutEffect as $, useContext as ee, useState as p, useMemo as F, useCallback as M } from "react";
 const re = {
   primary: "#de8500",
   primaryDark: "#b86e00",
@@ -17,6 +17,8 @@ const re = {
   mutedForeground: "#6b7a90",
   border: "#d4d9e2",
   ring: "rgba(222, 133, 0, 0.25)",
+  surfaceInverse: "#2e2e2e",
+  surfaceInverseForeground: "#ffffff",
   radius: "2px",
   fontSans: "'Nunito', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
@@ -39,6 +41,8 @@ const re = {
   mutedForeground: "#666666",
   border: "#e2e2e2",
   ring: "rgba(23, 74, 146, 0.25)",
+  surfaceInverse: "#2e2e2e",
+  surfaceInverseForeground: "#ffffff",
   radius: "2px",
   fontSans: "'Open Sans', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
@@ -61,6 +65,8 @@ const re = {
   mutedForeground: "#666666",
   border: "#e2e2e2",
   ring: "rgba(20, 73, 55, 0.25)",
+  surfaceInverse: "#2e2e2e",
+  surfaceInverseForeground: "#ffffff",
   radius: "2px",
   fontSans: "'Open Sans', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Barlow Condensed', ui-sans-serif, system-ui, sans-serif",
@@ -96,15 +102,15 @@ const re = {
     shortName: "CDP",
     theme: "canada-dry"
   }
-}, ae = {
+}, se = {
   honickman: re,
   pepsi: ne,
   "canada-dry": oe
 };
-function se(a) {
-  return ae[te[a].theme];
+function ae(s) {
+  return se[te[s].theme];
 }
-const O = Z(null), z = {
+const z = Z(null), E = {
   primary: "--color-primary",
   primaryDark: "--color-primary-dark",
   primaryLight: "--color-primary-light",
@@ -121,92 +127,94 @@ const O = Z(null), z = {
   mutedForeground: "--color-muted-foreground",
   border: "--color-border",
   ring: "--color-ring",
+  surfaceInverse: "--color-surface-inverse",
+  surfaceInverseForeground: "--color-surface-inverse-foreground",
   radius: "--radius",
   fontSans: "--font-sans",
   fontDisplay: "--font-display",
   fontMono: "--font-mono"
 };
-function de({ brand: a, children: c, scope: o = ":root" }) {
-  const r = se(a);
+function de({ brand: s, children: c, scope: o = ":root" }) {
+  const r = ae(s);
   return $(() => {
-    const u = o === ":root" ? document.documentElement : document.querySelector(o);
-    if (u) {
-      for (const [l, i] of Object.entries(z))
-        u.style.setProperty(i, r[l]);
+    const f = o === ":root" ? document.documentElement : document.querySelector(o);
+    if (f) {
+      for (const [l, i] of Object.entries(E))
+        f.style.setProperty(i, r[l]);
       return () => {
-        for (const l of Object.values(z))
-          u.style.removeProperty(l);
+        for (const l of Object.values(E))
+          f.style.removeProperty(l);
       };
     }
-  }, [r, o]), /* @__PURE__ */ X(O.Provider, { value: { brandId: a, tokens: r }, children: c });
+  }, [r, o]), /* @__PURE__ */ X(z.Provider, { value: { brandId: s, tokens: r }, children: c });
 }
 function le() {
-  const a = ee(O);
-  if (!a) throw new Error("useTheme must be used inside <ThemeProvider>");
-  return a;
+  const s = ee(z);
+  if (!s) throw new Error("useTheme must be used inside <ThemeProvider>");
+  return s;
 }
-function ce(a, c) {
-  return c.length === 0 ? a : [...a].sort((o, r) => {
-    for (const { key: u, dir: l } of c) {
-      const i = o[u], f = r[u], s = i === f ? 0 : i == null ? 1 : f == null || i < f ? -1 : 1;
-      if (s !== 0) return l === "asc" ? s : -s;
+function ce(s, c) {
+  return c.length === 0 ? s : [...s].sort((o, r) => {
+    for (const { key: f, dir: l } of c) {
+      const i = o[f], u = r[f], a = i === u ? 0 : i == null ? 1 : u == null || i < u ? -1 : 1;
+      if (a !== 0) return l === "asc" ? a : -a;
     }
     return 0;
   });
 }
 function me({
-  data: a,
+  data: s,
   defaultSort: c = { key: null, direction: "asc" },
   defaultSortLevels: o,
   defaultPageSize: r = 25,
-  filterFn: u,
+  filterFn: f,
   defaultColFilters: l = {},
   defaultColExcludes: i = {},
-  defaultColWidths: f = {}
+  defaultColWidths: u = {}
 }) {
-  const [s, S] = p(c), [y, b] = p(o ?? []), [g, m] = p({
+  const [a, S] = p(c), [y, b] = p(o ?? []), [g, m] = p({
     page: 0,
     pageSize: r
-  }), [k, V] = p(""), [h, x] = p(l), [w, D] = p(i), [W, P] = p(f), B = v(() => !u || !k.trim() ? a : a.filter((e) => u(e, k.trim())), [a, k, u]), C = v(() => {
+  }), [k, O] = p(""), [h, x] = p(l), [w, D] = p(i), [V, P] = p(u), B = F(() => !f || !k.trim() ? s : s.filter((e) => f(e, k.trim())), [s, k, f]), v = F(() => {
     const e = Object.keys(h).filter((n) => {
       var t;
       return (((t = h[n]) == null ? void 0 : t.length) ?? 0) > 0;
     });
     return e.length === 0 ? B : B.filter(
       (n) => e.every((t) => {
-        const d = String(n[t] ?? ""), E = h[t].includes(d);
-        return w[t] ? !E : E;
+        const d = String(n[t] ?? ""), I = h[t].includes(d);
+        return w[t] ? !I : I;
       })
     );
-  }, [B, h, w]), L = v(() => y.length > 0 ? ce(C, y) : s.key ? [...C].sort((e, n) => {
-    const t = e[s.key], d = n[s.key], T = t === d ? 0 : t == null ? 1 : d == null || t < d ? -1 : 1;
-    return s.direction === "asc" ? T : -T;
-  }) : C, [C, s, y]), A = L.length, N = Math.max(1, Math.ceil(A / g.pageSize)), F = Math.min(g.page, N - 1), j = v(
-    () => L.slice(F * g.pageSize, F * g.pageSize + g.pageSize),
-    [L, F, g.pageSize]
+  }, [B, h, w]), L = F(() => y.length > 0 ? ce(v, y) : a.key ? [...v].sort((e, n) => {
+    const t = e[a.key], d = n[a.key], T = t === d ? 0 : t == null ? 1 : d == null || t < d ? -1 : 1;
+    return a.direction === "asc" ? T : -T;
+  }) : v, [v, a, y]), A = L.length, N = Math.max(1, Math.ceil(A / g.pageSize)), C = Math.min(g.page, N - 1), W = F(
+    () => L.slice(C * g.pageSize, C * g.pageSize + g.pageSize),
+    [L, C, g.pageSize]
   );
-  function q(e) {
+  function j(e) {
     S((n) => ({
       key: e,
       direction: n.key === e && n.direction === "asc" ? "desc" : "asc"
     })), b([]), m((n) => ({ ...n, page: 0 }));
   }
-  function _(e) {
+  function q(e) {
     b(e), S({ key: null, direction: "asc" }), m((n) => ({ ...n, page: 0 }));
   }
-  function H(e) {
+  function _(e) {
     m((n) => ({ ...n, page: Math.max(0, Math.min(e, N - 1)) }));
   }
-  function J(e) {
+  function H(e) {
     m({ page: 0, pageSize: e });
   }
-  function R(e) {
-    V(e), m((n) => ({ ...n, page: 0 }));
+  function J(e) {
+    O(e), m((n) => ({ ...n, page: 0 }));
   }
-  function K(e, n, t = !1) {
+  function R(e, n, t = !1) {
     x((d) => ({ ...d, [e]: n })), D((d) => ({ ...d, [e]: t })), m((d) => ({ ...d, page: 0 }));
   }
-  function Q(e) {
+  function K(e) {
     x((n) => {
       const t = { ...n };
       return delete t[e], t;
@@ -215,10 +223,10 @@ function me({
       return delete t[e], t;
     }), m((n) => ({ ...n, page: 0 }));
   }
-  function Y() {
+  function Q() {
     x({}), D({}), m((e) => ({ ...e, page: 0 }));
   }
-  function I(e, n) {
+  function Y(e, n) {
     P((t) => ({ ...t, [e]: n }));
   }
   function G(e) {
@@ -231,31 +239,31 @@ function me({
     P({});
   }
   return {
-    rows: j,
+    rows: W,
     totalRows: A,
     totalPages: N,
-    sort: s,
-    setSort: q,
+    sort: a,
+    setSort: j,
     sortLevels: y,
-    setSortLevels: _,
+    setSortLevels: q,
     query: k,
-    setQuery: R,
+    setQuery: J,
     colFilters: h,
     colExcludes: w,
-    setColFilter: K,
-    clearColFilter: Q,
-    clearAllColFilters: Y,
-    colWidths: W,
-    setColWidth: I,
+    setColFilter: R,
+    clearColFilter: K,
+    clearAllColFilters: Q,
+    colWidths: V,
+    setColWidth: Y,
     resetColWidth: G,
     resetAllColWidths: U,
-    pagination: { ...g, page: F },
-    setPage: H,
-    setPageSize: J
+    pagination: { ...g, page: C },
+    setPage: _,
+    setPageSize: H
   };
 }
-function ie(a, c) {
-  const o = a[c.key], r = c.value;
+function ie(s, c) {
+  const o = s[c.key], r = c.value;
   switch (c.op) {
     case "eq":
       return o === r;
@@ -282,27 +290,27 @@ function ie(a, c) {
   }
 }
 function pe() {
-  const [a, c] = p([]), o = M(
-    (i, f, s) => {
-      c((S) => [...S.filter((b) => b.key !== i), { key: i, op: f, value: s }]);
+  const [s, c] = p([]), o = M(
+    (i, u, a) => {
+      c((S) => [...S.filter((b) => b.key !== i), { key: i, op: u, value: a }]);
     },
     []
   ), r = M((i) => {
-    c((f) => f.filter((s) => s.key !== i));
-  }, []), u = M(() => c([]), []), l = M(
-    (i) => i.filter((f) => a.every((s) => ie(f, s))),
-    [a]
+    c((u) => u.filter((a) => a.key !== i));
+  }, []), f = M(() => c([]), []), l = M(
+    (i) => i.filter((u) => s.every((a) => ie(u, a))),
+    [s]
   );
-  return { filters: a, setFilter: o, clearFilter: r, clearAll: u, apply: l };
+  return { filters: s, setFilter: o, clearFilter: r, clearAll: f, apply: l };
 }
 export {
   te as BRANDS,
-  ae as THEME_TOKENS,
+  se as THEME_TOKENS,
   de as ThemeProvider,
   oe as canadaDryTokens,
   re as honickmanTokens,
   ne as pepsiTokens,
-  se as tokensForBrand,
+  ae as tokensForBrand,
   pe as useFilters,
   me as useTable,
   le as useTheme

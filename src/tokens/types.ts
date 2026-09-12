@@ -25,6 +25,8 @@ export interface ThemeTokens {
   mutedForeground: string       // secondary / placeholder text
   border: string
   ring: string                  // focus ring
+  surfaceInverse: string        // dark band on a light page (footers, banners)
+  surfaceInverseForeground: string
 
   // ── Shape & type ──
   radius: string
