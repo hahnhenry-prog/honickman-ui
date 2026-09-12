@@ -1,12 +1,21 @@
 import type { ThemeTokens } from "./types";
 
 // Pepsi blue — shared by PCNY and PNB
-// Primary sourced from header background used across both Pepsi catalog apps
+//
+// `primary` is sampled from the flat fill of the PCNY logo artwork:
+// honickman-vending-maintenance-form/src/imports/PCNY_logo.png — a lossless
+// PNG, rgb(23, 74, 146), 57% of the image. This is the source of truth.
+//
+// Never re-source this value from the .webp logo copies. WebP is lossy and
+// reads back as #174b92, one point off. Sample brand colors from PNG or SVG.
+//
+// Values previously mistaken for Pepsi blue — do not reintroduce:
+// #004b93, #0065c3, #2ea3f2, #174b92.
 export const pepsiTokens: ThemeTokens = {
-  primary:      "#004b93",
-  primaryDark:  "#003472",
-  primaryLight: "#1a6bbf",
-  primaryMuted: "rgba(0, 75, 147, 0.08)",
+  primary:      "#174a92",
+  primaryDark:  "#0e3585",   // hover shade, already in production use
+  primaryLight: "#1f65c7",   // derived: same hue, lightened
+  primaryMuted: "rgba(23, 74, 146, 0.08)",
 
   background: "#f4f6f9",
   surface:    "#ffffff",
@@ -17,7 +26,7 @@ export const pepsiTokens: ThemeTokens = {
   textMuted:     "#999999",
 
   accent: "#e4003a",   // Pepsi red
-  ring:   "rgba(0, 75, 147, 0.25)",
+  ring:   "rgba(23, 74, 146, 0.25)",
 
   fontDisplay: "'Barlow Condensed', sans-serif",
   fontBody:    "'Open Sans', sans-serif",
