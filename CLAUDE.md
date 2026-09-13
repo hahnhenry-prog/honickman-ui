@@ -8,6 +8,9 @@ these values.** If one looks wrong, say so — do not silently change it in code
 
 | Theme | Used by | Role | Value |
 |---|---|---|---|
+| **BevApps** | sign-in, emails, staff-facing chrome | primary | `#27405c` |
+| | | primary dark (ink) | `#16202e` |
+| | | primary light / accent | `#38587c` |
 | **Pepsi** | PCNY, PNB | primary | `#174a92` |
 | | | primary dark (hover) | `#0e3585` |
 | | | primary light | `#1f65c7` |
@@ -32,6 +35,13 @@ text primary `#242424`, text secondary `#555555`, text muted `#999999`.
   a screenshot of the site reads `#283a4e`, one point off from colour-
   profile conversion. Always prefer the source artwork.
 
+- **BevApps `#27405c`** — the product brand, not a company. Chosen to sit
+  far darker and roughly half as saturated as Pepsi `#174a92`, so the two
+  never read as competing brand blues; this one is ink with a blue cast.
+  The light ground is what separates it from Encompass (dark navy + cyan),
+  the incumbent software vendor in this space. Monochrome on purpose: one
+  hue at three values.
+
 ## Rules
 
 1. **Sample brand colors from PNG or SVG only — never WebP.** WebP is lossy.
@@ -48,6 +58,14 @@ text primary `#242424`, text secondary `#555555`, text muted `#999999`.
 
 4. **When a color is missing, ask — don't pick one.** Inventing a near-miss
    shade is how the palette drifted in the first place.
+
+5. **Chrome is BevApps, content is the customer's brand.** The sign-in
+   screen, the emailed codes, the landing page and the chrome of
+   staff-facing tools (catalog admin, vending form) wear `bevapps`.
+   Customer-facing surfaces — the product catalog — keep the beverage brand,
+   because the retailer reading them has a relationship with Pepsi and
+   Canada Dry, not with BevApps. This split is what makes BevApps legible as
+   a software vendor rather than an in-house intranet.
 
 The machine-readable copy of this palette lives in `honickman-ui/src/tokens/`.
 

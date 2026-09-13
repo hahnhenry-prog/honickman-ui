@@ -1,6 +1,6 @@
 import { ThemeTokens } from '../tokens';
-export type ThemeId = "honickman" | "pepsi" | "canada-dry";
-export type BrandId = "honickman" | "pcny" | "pnb" | "cddv" | "cdp";
+export type ThemeId = "honickman" | "pepsi" | "canada-dry" | "bevapps";
+export type BrandId = "bevapps" | "honickman" | "pcny" | "pnb" | "cddv" | "cdp";
 export interface Brand {
     id: BrandId;
     name: string;

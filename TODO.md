@@ -10,9 +10,14 @@ Working list. Moves to the monorepo root once that exists.
       should be publicly readable. Folding into a private monorepo settles it;
       making `honickman-ui` private on its own would break the `github:`
       dependency on Vercel.
-- [ ] **AWS access key ID is in `honickman-catalog-admin/CLAUDE.md`** (`AKIAU…`)
-      in a public repo. The secret key is not, so this is half a credential —
-      but move it out and rotate if the repo has been public for long.
+- [ ] **AWS credential is fully exposed. Rotate it.** Both halves are public:
+      the key ID sits in `honickman-catalog-admin/CLAUDE.md`, and the *secret*
+      is inlined into the deployed admin bundle, because `VITE_`-prefixed vars
+      are compiled into the JavaScript Vite ships. Verified against the live
+      bundle on 2026-09-12. The password gate downloads after the bundle, so it
+      protects nothing. Rotating is the stopgap; the fix is moving uploads
+      behind a server that mints presigned URLs, so no key ever reaches a
+      browser. Fold that into the auth work — both need a server-side piece.
 - [ ] **`VITE_SITE_PASSWORD` ships in the JavaScript bundle.** Inherent to how
       `VITE_` vars work. The password gates are a speed bump, not access
       control. Superseded by the auth work below.

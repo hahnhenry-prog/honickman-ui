@@ -1,8 +1,12 @@
-import { honickmanTokens, pepsiTokens, canadaDryTokens } from "../tokens";
+import { honickmanTokens, pepsiTokens, canadaDryTokens, bevappsTokens } from "../tokens";
 import type { ThemeTokens } from "../tokens";
 
-export type ThemeId = "honickman" | "pepsi" | "canada-dry";
-export type BrandId = "honickman" | "pcny" | "pnb" | "cddv" | "cdp";
+export type ThemeId = "honickman" | "pepsi" | "canada-dry" | "bevapps";
+
+// "bevapps" is the product brand, not a Honickman company. It wears the
+// sign-in screen, the emailed codes, the landing page and the chrome of
+// staff-facing tools. The four bottlers below are customers.
+export type BrandId = "bevapps" | "honickman" | "pcny" | "pnb" | "cddv" | "cdp";
 
 export interface Brand {
   id: BrandId;
@@ -16,6 +20,12 @@ export interface Brand {
 }
 
 export const BRANDS: Record<BrandId, Brand> = {
+  bevapps: {
+    id: "bevapps",
+    name: "BevApps",
+    shortName: "BevApps",
+    theme: "bevapps",
+  },
   honickman: {
     id: "honickman",
     name: "The Honickman Companies",
@@ -49,6 +59,7 @@ export const BRANDS: Record<BrandId, Brand> = {
 };
 
 export const THEME_TOKENS: Record<ThemeId, ThemeTokens> = {
+  bevapps:      bevappsTokens,
   honickman:    honickmanTokens,
   pepsi:        pepsiTokens,
   "canada-dry": canadaDryTokens,

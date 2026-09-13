@@ -23,7 +23,7 @@ const ne = {
   fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace"
-}, te = {
+}, oe = {
   primary: "#174a92",
   primaryDark: "#0e3585",
   primaryLight: "#1f65c7",
@@ -47,7 +47,7 @@ const ne = {
   fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
   fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace"
-}, oe = {
+}, te = {
   primary: "#144937",
   primaryDark: "#082d24",
   primaryLight: "#1a6b3c",
@@ -72,6 +72,35 @@ const ne = {
   fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace"
 }, se = {
+  primary: "#27405c",
+  primaryDark: "#16202e",
+  primaryLight: "#38587c",
+  primaryMuted: "rgba(39, 64, 92, 0.09)",
+  primaryForeground: "#ffffff",
+  secondary: "#16202e",
+  secondaryForeground: "#ffffff",
+  accent: "#38587c",
+  background: "#f0eeeb",
+  foreground: "#16202e",
+  card: "#ffffff",
+  cardForeground: "#16202e",
+  muted: "#f6f5f3",
+  mutedForeground: "#6a7482",
+  border: "#e2e0dc",
+  ring: "rgba(39, 64, 92, 0.25)",
+  surfaceInverse: "#16202e",
+  surfaceInverseForeground: "#ffffff",
+  radius: "2px",
+  fontSans: "'Inter', ui-sans-serif, system-ui, sans-serif",
+  fontDisplay: "'Outfit', ui-sans-serif, system-ui, sans-serif",
+  fontMono: "'JetBrains Mono', ui-monospace, monospace"
+}, ae = {
+  bevapps: {
+    id: "bevapps",
+    name: "BevApps",
+    shortName: "BevApps",
+    theme: "bevapps"
+  },
   honickman: {
     id: "honickman",
     name: "The Honickman Companies",
@@ -102,15 +131,16 @@ const ne = {
     shortName: "CDP",
     theme: "canada-dry"
   }
-}, ae = {
+}, ie = {
+  bevapps: se,
   honickman: ne,
-  pepsi: te,
-  "canada-dry": oe
+  pepsi: oe,
+  "canada-dry": te
 };
-function ie(o) {
-  return ae[se[o].theme];
+function ce(t) {
+  return ie[ae[t].theme];
 }
-const O = Z(null), z = {
+const z = Z(null), O = {
   primary: "--color-primary",
   primaryDark: "--color-primary-dark",
   primaryLight: "--color-primary-light",
@@ -134,122 +164,122 @@ const O = Z(null), z = {
   fontDisplay: "--font-display",
   fontMono: "--font-mono"
 };
-function de({ brand: o, children: a, scope: e = ":root" }) {
-  const r = ie(o);
+function me({ brand: t, children: a, scope: e = ":root" }) {
+  const r = ce(t);
   return ee(() => {
-    const u = e === ":root" ? document.documentElement : document.querySelector(e);
-    if (u) {
-      for (const [f, i] of Object.entries(z))
-        u.style.setProperty(i, r[f]);
+    const f = e === ":root" ? document.documentElement : document.querySelector(e);
+    if (f) {
+      for (const [u, i] of Object.entries(O))
+        f.style.setProperty(i, r[u]);
       return () => {
-        for (const f of Object.values(z))
-          u.style.removeProperty(f);
+        for (const u of Object.values(O))
+          f.style.removeProperty(u);
       };
     }
-  }, [r, e]), /* @__PURE__ */ b(O.Provider, { value: { brandId: o, tokens: r }, children: a });
+  }, [r, e]), /* @__PURE__ */ b(z.Provider, { value: { brandId: t, tokens: r }, children: a });
 }
-function me() {
-  const o = re(O);
-  if (!o) throw new Error("useTheme must be used inside <ThemeProvider>");
-  return o;
+function pe() {
+  const t = re(z);
+  if (!t) throw new Error("useTheme must be used inside <ThemeProvider>");
+  return t;
 }
-function ce(o, a) {
-  return a.length === 0 ? o : [...o].sort((e, r) => {
-    for (const { key: u, dir: f } of a) {
-      const i = e[u], l = r[u], c = i === l ? 0 : i == null ? 1 : l == null || i < l ? -1 : 1;
-      if (c !== 0) return f === "asc" ? c : -c;
+function fe(t, a) {
+  return a.length === 0 ? t : [...t].sort((e, r) => {
+    for (const { key: f, dir: u } of a) {
+      const i = e[f], d = r[f], c = i === d ? 0 : i == null ? 1 : d == null || i < d ? -1 : 1;
+      if (c !== 0) return u === "asc" ? c : -c;
     }
     return 0;
   });
 }
-function pe({
-  data: o,
+function ge({
+  data: t,
   defaultSort: a = { key: null, direction: "asc" },
   defaultSortLevels: e,
   defaultPageSize: r = 25,
-  filterFn: u,
-  defaultColFilters: f = {},
+  filterFn: f,
+  defaultColFilters: u = {},
   defaultColExcludes: i = {},
-  defaultColWidths: l = {}
+  defaultColWidths: d = {}
 }) {
   const [c, v] = p(a), [y, F] = p(e ?? []), [g, m] = p({
     page: 0,
     pageSize: r
-  }), [k, V] = p(""), [h, D] = p(f), [P, N] = p(i), [W, w] = p(l), I = M(() => !u || !k.trim() ? o : o.filter((n) => u(n, k.trim())), [o, k, u]), S = M(() => {
-    const n = Object.keys(h).filter((t) => {
+  }), [k, V] = p(""), [h, D] = p(u), [I, N] = p(i), [W, P] = p(d), w = M(() => !f || !k.trim() ? t : t.filter((n) => f(n, k.trim())), [t, k, f]), S = M(() => {
+    const n = Object.keys(h).filter((o) => {
       var s;
-      return (((s = h[t]) == null ? void 0 : s.length) ?? 0) > 0;
+      return (((s = h[o]) == null ? void 0 : s.length) ?? 0) > 0;
     });
-    return n.length === 0 ? I : I.filter(
-      (t) => n.every((s) => {
-        const d = String(t[s] ?? ""), B = h[s].includes(d);
-        return P[s] ? !B : B;
+    return n.length === 0 ? w : w.filter(
+      (o) => n.every((s) => {
+        const l = String(o[s] ?? ""), A = h[s].includes(l);
+        return I[s] ? !A : A;
       })
     );
-  }, [I, h, P]), L = M(() => y.length > 0 ? ce(S, y) : c.key ? [...S].sort((n, t) => {
-    const s = n[c.key], d = t[c.key], _ = s === d ? 0 : s == null ? 1 : d == null || s < d ? -1 : 1;
-    return c.direction === "asc" ? _ : -_;
-  }) : S, [S, c, y]), A = L.length, T = Math.max(1, Math.ceil(A / g.pageSize)), C = Math.min(g.page, T - 1), j = M(
+  }, [w, h, I]), L = M(() => y.length > 0 ? fe(S, y) : c.key ? [...S].sort((n, o) => {
+    const s = n[c.key], l = o[c.key], B = s === l ? 0 : s == null ? 1 : l == null || s < l ? -1 : 1;
+    return c.direction === "asc" ? B : -B;
+  }) : S, [S, c, y]), _ = L.length, T = Math.max(1, Math.ceil(_ / g.pageSize)), C = Math.min(g.page, T - 1), j = M(
     () => L.slice(C * g.pageSize, C * g.pageSize + g.pageSize),
     [L, C, g.pageSize]
   );
   function q(n) {
-    v((t) => ({
+    v((o) => ({
       key: n,
-      direction: t.key === n && t.direction === "asc" ? "desc" : "asc"
-    })), F([]), m((t) => ({ ...t, page: 0 }));
-  }
-  function H(n) {
-    F(n), v({ key: null, direction: "asc" }), m((t) => ({ ...t, page: 0 }));
+      direction: o.key === n && o.direction === "asc" ? "desc" : "asc"
+    })), F([]), m((o) => ({ ...o, page: 0 }));
   }
   function J(n) {
-    m((t) => ({ ...t, page: Math.max(0, Math.min(n, T - 1)) }));
+    F(n), v({ key: null, direction: "asc" }), m((o) => ({ ...o, page: 0 }));
+  }
+  function H(n) {
+    m((o) => ({ ...o, page: Math.max(0, Math.min(n, T - 1)) }));
   }
   function R(n) {
     m({ page: 0, pageSize: n });
   }
   function K(n) {
-    V(n), m((t) => ({ ...t, page: 0 }));
+    V(n), m((o) => ({ ...o, page: 0 }));
   }
-  function Q(n, t, s = !1) {
-    D((d) => ({ ...d, [n]: t })), N((d) => ({ ...d, [n]: s })), m((d) => ({ ...d, page: 0 }));
+  function Q(n, o, s = !1) {
+    D((l) => ({ ...l, [n]: o })), N((l) => ({ ...l, [n]: s })), m((l) => ({ ...l, page: 0 }));
   }
   function Y(n) {
-    D((t) => {
-      const s = { ...t };
+    D((o) => {
+      const s = { ...o };
       return delete s[n], s;
-    }), N((t) => {
-      const s = { ...t };
+    }), N((o) => {
+      const s = { ...o };
       return delete s[n], s;
-    }), m((t) => ({ ...t, page: 0 }));
+    }), m((o) => ({ ...o, page: 0 }));
   }
   function $() {
     D({}), N({}), m((n) => ({ ...n, page: 0 }));
   }
-  function G(n, t) {
-    w((s) => ({ ...s, [n]: t }));
+  function G(n, o) {
+    P((s) => ({ ...s, [n]: o }));
   }
   function U(n) {
-    w((t) => {
-      const s = { ...t };
+    P((o) => {
+      const s = { ...o };
       return delete s[n], s;
     });
   }
   function X() {
-    w({});
+    P({});
   }
   return {
     rows: j,
-    totalRows: A,
+    totalRows: _,
     totalPages: T,
     sort: c,
     setSort: q,
     sortLevels: y,
-    setSortLevels: H,
+    setSortLevels: J,
     query: k,
     setQuery: K,
     colFilters: h,
-    colExcludes: P,
+    colExcludes: I,
     setColFilter: Q,
     clearColFilter: Y,
     clearAllColFilters: $,
@@ -258,12 +288,12 @@ function pe({
     resetColWidth: U,
     resetAllColWidths: X,
     pagination: { ...g, page: C },
-    setPage: J,
+    setPage: H,
     setPageSize: R
   };
 }
-function ue(o, a) {
-  const e = o[a.key], r = a.value;
+function ue(t, a) {
+  const e = t[a.key], r = a.value;
   switch (a.op) {
     case "eq":
       return e === r;
@@ -289,59 +319,59 @@ function ue(o, a) {
       return !0;
   }
 }
-function ge() {
-  const [o, a] = p([]), e = x(
-    (i, l, c) => {
-      a((v) => [...v.filter((F) => F.key !== i), { key: i, op: l, value: c }]);
+function ye() {
+  const [t, a] = p([]), e = x(
+    (i, d, c) => {
+      a((v) => [...v.filter((F) => F.key !== i), { key: i, op: d, value: c }]);
     },
     []
   ), r = x((i) => {
-    a((l) => l.filter((c) => c.key !== i));
-  }, []), u = x(() => a([]), []), f = x(
-    (i) => i.filter((l) => o.every((c) => ue(l, c))),
-    [o]
+    a((d) => d.filter((c) => c.key !== i));
+  }, []), f = x(() => a([]), []), u = x(
+    (i) => i.filter((d) => t.every((c) => ue(d, c))),
+    [t]
   );
-  return { filters: o, setFilter: e, clearFilter: r, clearAll: u, apply: f };
+  return { filters: t, setFilter: e, clearFilter: r, clearAll: f, apply: u };
 }
-function ye({
-  label: o,
+function he({
+  label: t,
   required: a,
   hint: e,
   error: r,
-  htmlFor: u,
-  className: f,
+  htmlFor: f,
+  className: u,
   children: i
 }) {
-  return /* @__PURE__ */ E("div", { className: f ? `hui-field ${f}` : "hui-field", children: [
-    /* @__PURE__ */ E("label", { className: "hui-field__label", htmlFor: u, children: [
-      o,
+  return /* @__PURE__ */ E("div", { className: u ? `hui-field ${u}` : "hui-field", children: [
+    /* @__PURE__ */ E("label", { className: "hui-field__label", htmlFor: f, children: [
+      t,
       a && /* @__PURE__ */ b("span", { className: "hui-field__required", "aria-hidden": "true", children: "*" })
     ] }),
     i,
     r ? /* @__PURE__ */ b("p", { className: "hui-field__error", role: "alert", children: r }) : e ? /* @__PURE__ */ b("p", { className: "hui-field__hint", children: e }) : null
   ] });
 }
-function he({ invalid: o, className: a, ...e }) {
+function be({ invalid: t, className: a, ...e }) {
   return /* @__PURE__ */ b(
     "input",
     {
       ...e,
-      "aria-invalid": o || void 0,
+      "aria-invalid": t || void 0,
       className: a ? `hui-input ${a}` : "hui-input"
     }
   );
 }
 export {
-  se as BRANDS,
-  ye as Field,
-  he as Input,
-  ae as THEME_TOKENS,
-  de as ThemeProvider,
-  oe as canadaDryTokens,
+  ae as BRANDS,
+  he as Field,
+  be as Input,
+  ie as THEME_TOKENS,
+  me as ThemeProvider,
+  te as canadaDryTokens,
   ne as honickmanTokens,
-  te as pepsiTokens,
-  ie as tokensForBrand,
-  ge as useFilters,
-  pe as useTable,
-  me as useTheme
+  oe as pepsiTokens,
+  ce as tokensForBrand,
+  ye as useFilters,
+  ge as useTable,
+  pe as useTheme
 };
